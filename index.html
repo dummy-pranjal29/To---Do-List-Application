@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>To‑Do</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="title">To‑Do</h1>
+      <button
+        id="theme-toggle"
+        class="icon-btn"
+        type="button"
+        aria-label="Toggle theme"
+      >
+        <span aria-hidden="true">🌗</span>
+      </button>
+    </header>
+
+    <main class="app">
+      <form id="todo-form" autocomplete="off">
+        <label for="new-task" class="sr-only">Add new task</label>
+        <input
+          id="new-task"
+          name="task"
+          type="text"
+          placeholder="What needs to be done?"
+          required
+          inputmode="text"
+          maxlength="200"
+          aria-describedby="task-help"
+        />
+        <button
+          id="add-task-btn"
+          class="primary"
+          type="button"
+          aria-label="Add task"
+        >
+          Add
+        </button>
+        <p id="task-help" class="help">Press Add or Enter to create a task</p>
+      </form>
+
+      <section class="controls" aria-label="List controls">
+        <div class="filters" role="tablist" aria-label="Filters">
+          <button
+            class="filter is-active"
+            data-filter="all"
+            role="tab"
+            aria-selected="true"
+          >
+            All
+          </button>
+          <button
+            class="filter"
+            data-filter="active"
+            role="tab"
+            aria-selected="false"
+          >
+            Active
+          </button>
+          <button
+            class="filter"
+            data-filter="completed"
+            role="tab"
+            aria-selected="false"
+          >
+            Completed
+          </button>
+        </div>
+        <div class="bulk-actions">
+          <button id="clear-completed" class="ghost" type="button">
+            Clear completed
+          </button>
+        </div>
+      </section>
+
+      <ul id="task-list" class="task-list" aria-label="To‑do list">
+        <!--
+        Example item structure for JS rendering:
+
+        <li class="task" data-id="...">
+          <label class="checkbox">
+            <input type="checkbox" class="toggle" aria-label="Toggle complete" />
+            <span class="checkmark" aria-hidden="true"></span>
+          </label>
+
+          <input class="task-title" value="Example task" readonly aria-label="Task title" />
+
+          <div class="actions">
+            <button class="edit" type="button" aria-label="Edit task">Edit</button>
+            <button class="delete danger" type="button" aria-label="Delete task">Delete</button>
+          </div>
+        </li>
+      --></ul>
+
+      <footer class="statusbar" aria-live="polite" aria-atomic="true">
+        <span id="items-left">0 items left</span>
+      </footer>
+    </main>
+
+    <dialog id="confirm-dialog">
+      <form method="dialog" class="dialog-body">
+        <p>Delete this task?</p>
+        <menu>
+          <button value="cancel" class="ghost">Cancel</button>
+          <button value="confirm" class="danger">Delete</button>
+        </menu>
+      </form>
+    </dialog>
+    <script src="app.js" defer></script>
+  </body>
+</html>
