@@ -1,7 +1,7 @@
 :root {
   color-scheme: light dark;
 
-  /* Colors (Dark default) */
+  
   --bg: #0b1220;
   --surface: #101826;
   --elev: #0f172a;
@@ -14,13 +14,13 @@
   --danger: #ef4444;
   --focus: #93c5fd;
 
-  /* Sizing & radius */
+  
   --radius: 12px;
   --radius-sm: 10px;
   --pad: 14px;
   --gap: 12px;
 
-  /* Shadows */
+  
   --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 16px rgba(0, 0, 0, 0.25);
   --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 30px rgba(0, 0, 0, 0.35);
 }
@@ -77,7 +77,7 @@ body {
   color: var(--text);
 }
 
-/* Accessibility helpers */
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -96,7 +96,7 @@ body {
   color: var(--muted);
 }
 
-/* Header */
+
 .app-header {
   max-width: 840px;
   margin: 24px auto 0;
@@ -113,7 +113,7 @@ body {
   font-size: 28px;
 }
 
-/* App container */
+
 .app {
   max-width: 840px;
   margin: 16px auto 40px;
@@ -128,7 +128,7 @@ body {
       border-box;
 }
 
-/* Form */
+
 #todo-form {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -173,7 +173,7 @@ body {
   grid-row: 1 / 2;
 }
 
-/* Controls */
+
 .controls {
   display: flex;
   align-items: center;
@@ -207,7 +207,7 @@ body {
     inset;
 }
 
-/* Buttons */
+
 button {
   font: inherit;
   color: var(--text);
@@ -263,7 +263,7 @@ button:focus-visible {
   border-color: var(--focus);
 }
 
-/* Task list */
+
 .task-list {
   list-style: none;
   margin: 0;
@@ -320,7 +320,7 @@ button:focus-visible {
   height: 0;
 }
 
-/* Title */
+
 .task-title {
   width: 100%;
   padding: 8px 10px;
@@ -342,7 +342,7 @@ button:focus-visible {
   color: var(--muted);
 }
 
-/* Actions */
+
 .actions {
   display: inline-flex;
   gap: 8px;
@@ -355,7 +355,7 @@ button:focus-visible {
   min-width: 72px;
 }
 
-/* Status bar */
+
 .statusbar {
   display: flex;
   align-items: center;
@@ -365,7 +365,7 @@ button:focus-visible {
   padding: 4px 2px;
 }
 
-/* Dialog */
+
 dialog {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -387,7 +387,7 @@ dialog menu {
   padding: 0;
 }
 
-/* Responsive */
+
 @media (max-width: 520px) {
   .app-header {
     margin-top: 16px;
@@ -404,3 +404,4 @@ dialog menu {
     min-width: auto;
   }
 }
+
