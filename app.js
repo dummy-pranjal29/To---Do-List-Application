@@ -1,7 +1,4 @@
-// To-Do App (Vanilla JS) — DOM-ready + guards + CSS.escape polyfill
-
 (() => {
-  // Polyfill CSS.escape for older browsers
   if (!window.CSS || typeof CSS.escape !== "function") {
     window.CSS = window.CSS || {};
     CSS.escape = function (value) {
@@ -25,7 +22,6 @@
     const STORAGE_KEY = "todos-v1";
     const THEME_KEY = "theme";
 
-    // Elements (with defensive lookups)
     const els = {
       form: q("todo-form"),
       input: q("new-task"),
@@ -38,7 +34,6 @@
       confirmDialog: q("confirm-dialog"),
     };
 
-    // Abort if critical elements are missing
     if (!els.form || !els.input || !els.addBtn || !els.list) {
       console.error(
         "Critical elements missing; verify HTML structure and IDs."
@@ -46,18 +41,18 @@
       return;
     }
 
-    // State
+    
     let tasks = loadTasks();
     let filter = "all";
     let pendingDeleteId = null;
 
-    // Init
+    
     applySavedTheme();
     render();
     updateItemsLeft();
     syncFilterUI();
 
-    // Events
+    
     els.addBtn?.addEventListener("click", onAdd);
     els.form?.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -96,7 +91,7 @@
       });
     }
 
-    // Handlers
+    
     function onAdd() {
       const title = els.input.value.trim();
       if (!title) return;
@@ -204,7 +199,7 @@
       }
     }
 
-    // Core ops
+    
     function handleDelete(id) {
       pendingDeleteId = id;
       if (
@@ -286,7 +281,7 @@
       delete inputEl.dataset.original;
     }
 
-    // Render
+    
     function render() {
       const frag = document.createDocumentFragment();
       const data = getFiltered();
@@ -366,7 +361,7 @@
       return tasks;
     }
 
-    // Persistence & Theme
+    
     function loadTasks() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -393,7 +388,7 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
       } catch {
-        // ignore quota errors
+        
       }
     }
 
@@ -406,7 +401,7 @@
       }
     }
 
-    // Utils
+    
     function cryptoRandomId() {
       if (crypto?.randomUUID) return crypto.randomUUID();
       return (
@@ -417,3 +412,4 @@
     }
   }
 })();
+
