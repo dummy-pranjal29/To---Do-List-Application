@@ -1,0 +1,406 @@
+:root {
+  color-scheme: light dark;
+
+  /* Colors (Dark default) */
+  --bg: #0b1220;
+  --surface: #101826;
+  --elev: #0f172a;
+  --text: #e6e9ee;
+  --muted: #9aa6b2;
+  --border: #1f2a3a;
+
+  --accent: #3b82f6;
+  --accent-2: #22c55e;
+  --danger: #ef4444;
+  --focus: #93c5fd;
+
+  /* Sizing & radius */
+  --radius: 12px;
+  --radius-sm: 10px;
+  --pad: 14px;
+  --gap: 12px;
+
+  /* Shadows */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 16px rgba(0, 0, 0, 0.25);
+  --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --elev: #ffffff;
+    --text: #0b1220;
+    --muted: #5d6875;
+    --border: #e5e9f0;
+
+    --accent: #2563eb;
+    --accent-2: #16a34a;
+    --danger: #dc2626;
+    --focus: #60a5fa;
+
+    --shadow-1: 0 1px 2px rgba(16, 24, 38, 0.06),
+      0 8px 20px rgba(16, 24, 38, 0.06);
+    --shadow-2: 0 2px 6px rgba(16, 24, 38, 0.08),
+      0 14px 34px rgba(16, 24, 38, 0.1);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font: 500 16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Inter, Arial, sans-serif;
+  background: radial-gradient(
+        1200px 800px at 80% -10%,
+        rgba(59, 130, 246, 0.25),
+        rgba(59, 130, 246, 0)
+      )
+      no-repeat,
+    radial-gradient(
+        1000px 600px at -10% 110%,
+        rgba(34, 197, 94, 0.18),
+        rgba(34, 197, 94, 0)
+      )
+      no-repeat,
+    var(--bg);
+  color: var(--text);
+}
+
+/* Accessibility helpers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.help {
+  margin: 6px 2px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Header */
+.app-header {
+  max-width: 840px;
+  margin: 24px auto 0;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 28px;
+}
+
+/* App container */
+.app {
+  max-width: 840px;
+  margin: 16px auto 40px;
+  padding: 16px;
+  background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.02),
+        rgba(255, 255, 255, 0)
+      )
+      padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0))
+      border-box;
+}
+
+/* Form */
+#todo-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--pad);
+  box-shadow: var(--shadow-1);
+}
+
+#todo-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-column-gap: var(--gap);
+  grid-row-gap: 6px;
+  align-items: center;
+}
+
+#new-task {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--elev);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+#new-task::placeholder {
+  color: var(--muted);
+}
+
+#new-task:focus-visible {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 30%, transparent);
+}
+
+#add-task-btn {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  margin: 14px 2px 18px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter {
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.filter:hover {
+  background: color-mix(in oklab, var(--surface) 85%, var(--accent) 15%);
+}
+.filter.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 25%, transparent)
+    inset;
+}
+
+/* Buttons */
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform 0.04s ease, background 0.15s, border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.primary {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent) 92%, white 8%),
+    var(--accent)
+  );
+  border-color: color-mix(in oklab, var(--accent) 80%, black 20%);
+  color: white;
+  box-shadow: var(--shadow-1);
+}
+
+button.ghost {
+  background: transparent;
+}
+
+button.danger {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--danger) 92%, white 8%),
+    var(--danger)
+  );
+  border-color: color-mix(in oklab, var(--danger) 80%, black 20%);
+  color: white;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 35%, transparent);
+  border-color: var(--focus);
+}
+
+/* Task list */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+}
+
+.checkbox {
+  display: inline-grid;
+  place-items: center;
+}
+
+.checkbox > input[type="checkbox"] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 2px solid var(--muted);
+  background: var(--elev);
+  display: grid;
+  place-items: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.checkbox > input[type="checkbox"]:checked {
+  border-color: var(--accent-2);
+  background: var(--accent-2);
+}
+
+.checkbox > input[type="checkbox"]:checked + .checkmark::after {
+  content: "✓";
+  color: #0b1220;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.checkmark {
+  display: inline-block;
+  width: 0;
+  height: 0;
+}
+
+/* Title */
+.task-title {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+}
+
+.task-title.editing {
+  background: var(--elev);
+  border-color: var(--border);
+  outline: none;
+}
+
+.task.completed .task-title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* Actions */
+.actions {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.actions .edit {
+  min-width: 64px;
+}
+.actions .delete {
+  min-width: 72px;
+}
+
+/* Status bar */
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  margin-top: 8px;
+  padding: 4px 2px;
+}
+
+/* Dialog */
+dialog {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0;
+  box-shadow: var(--shadow-2);
+}
+
+.dialog-body {
+  padding: 18px;
+}
+
+dialog menu {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .app-header {
+    margin-top: 16px;
+  }
+  #todo-form {
+    grid-template-columns: 1fr;
+  }
+  #add-task-btn {
+    grid-column: 1 / -1;
+  }
+  .actions .edit,
+  .actions .delete {
+    padding: 8px 10px;
+    min-width: auto;
+  }
+}
